@@ -1,88 +1,64 @@
-/**
- * Modules
- * Important aspect of any robust application's architecutre
- * Keep the units of code for a project both cleanly separated and organized
- * Encapsulate some data into privacy and expose other data publicly
- */ 
+// BUDGET CONTROLLER
+var budgetController = (function () {
 
- /**
-  * To-Do List
-  * Add event handler
-  * Get input values
-  * add the new item to our data structure
-  * Add the new item to the UI
-  * Calculate the budget
-  * Update the UI
-  */
+    // some code
 
-  /**
-   * UI Module
-   * Get input values
-   * Add the new item to the UI
-   * Update the UI
-   */
+})();
 
-   /***
-    * Data Module
-    * Add the new item to our data structure
-    * Calculate the budget
-    */
+// UI CONTROLLER
+var UIController = (function () {
+    var DOMstrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value',
+        inputButton: '.add__btn'
+    };
 
-    /**
-     * Controller Module
-     * Add event handler
-     */
+    return {
+        getInput: function () {
+            return {
+                type: document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value
+            };
+        }, 
 
-    /***
-     * Implementing the Module Pattern
-     * how to use the module pattern
-     * More about private and public data, encapsulation, and separation of concerns
-     */
-
-     // BUDGET CONTROLLER
-     var budgetController = (function() {
-
-        // some code
-
-     })();
-
-     // UI CONTROLLER
-     var UIController = (function() {
-
-        /// Some code
-
-     })();
-
-      /**
-      * Setting up the First Event Listeners
-      * how to set up event listeners for keypress events
-      * how to use event object
-      */
-
-     // GLOBAL APP CONTROLLER
-     var controller = (function(budgetCtrl, UICtrl) {
-
-        var ctrlAddItem = function() {
-            // 1. Get the field input data
-
-            // 2. Add the item to the budget controller
-
-            // 3. Add the new item to the user interface
-
-            // 4. Calculate the budget
-
-            // 5. Display the budget on the UI
-            console.log('it works');
+        getDOMstrings: function() {
+            return DOMstrings;
         }
-        document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    }
 
-        document.addEventListener('keypress', function(event) {
+})();
 
-            if (event.keyCode === 13 || event.which === 13) { //event.which for older browsers
-                ctrlAddItem();
-            }
-        });
+// GLOBAL APP CONTROLLER
+var controller = (function (budgetCtrl, UICtrl) {
 
-     })(budgetController, UIController);
+    var DOM = UICtrl.getDOMstrings();
 
-    
+    var ctrlAddItem = function () {
+        // 1. Get the field input data
+        var input = UICtrl.getInput();
+        console.log(input);
+
+        // 2. Add the item to the budget controller
+
+        // 3. Add the new item to the user interface
+
+        // 4. Calculate the budget
+
+        // 5. Display the budget on the UI
+        
+    }
+    document.querySelector(DOM.inputButton).addEventListener('click', ctrlAddItem);
+
+    document.addEventListener('keypress', function (event) {
+
+        if (event.keyCode === 13 || event.which === 13) { //event.which for older browsers
+            ctrlAddItem();
+        }
+
+    });
+
+})(budgetController, UIController);
+
+
