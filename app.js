@@ -1,13 +1,34 @@
 /**
- *  Creating an initalization function
- *  how and why to create an initialization function
+ *  Creating Income and Expense Function Constructors
+ *  how to choose function constructos that meet our application needs
+ *  How to set up a proper data structure for our budget controller
  */
 
 // BUDGET CONTROLLER
 var budgetController = (function () {
 
-    // some code
+    var Expense = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
 
+    var Income = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var data = {
+        allItems: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        }
+    }
 })();
 
 // UI CONTROLLER
