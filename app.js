@@ -1,8 +1,9 @@
 /**
- *  Adding a New Item to the UI
- *  A technique for adding big chunks of HTML into the DOM
- *  How to replace parts of strings
- *  How to do DOM manipulation using the insertAdjacentHTML method
+ *  Clearing Our Input Fields
+ *  How to clear HTML fields
+ *  How to use querySelectorAll
+ *  How to do convert a list to an array
+ *  A better way to loop over an array then for loops: for each
  */
 
 // BUDGET CONTROLLER
@@ -94,7 +95,7 @@ var UIController = (function () {
                 element = DOMstrings.expenseContainer;
                 html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
-            
+
             // Replace the placeholder text with some actual data
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
@@ -102,6 +103,20 @@ var UIController = (function () {
 
             // Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+        },
+
+        clearFields: function () {
+            var fields, fieldsArr;
+
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+
+            fieldsArr = Array.prototype.slice.call(fields); 
+
+            fieldsArr.forEach(function(current, index, array) {
+                current.value = "";
+            });
+
+            fieldsArr[0].focus();
         },
 
         getDOMstrings: function () {
@@ -140,6 +155,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         // 3. Add the new item to the user interface
         UICtrl.addListItem(newItem, input.type);
+
+        // 3.5 Clear the fields
+        UICtrl.clearFields();
 
         // 4. Calculate the budget
 
