@@ -1,7 +1,6 @@
 /**
- *  Deleting an Item from Our Budget Controller 
- *  Yet another method to loop over an array: map
- *  How to remove elements from an array using the splice method 
+ *  Deleting an Item from the UI 
+ *  More DOM manipulation: how to remove an element from the DOM
  */
 
 // BUDGET CONTROLLER
@@ -158,6 +157,12 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
 
+        deleteListItem: function(selectorID) {
+
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
+        },
+
         clearFields: function () {
             var fields, fieldsArr;
 
@@ -263,8 +268,10 @@ var controller = (function (budgetCtrl, UICtrl) {
             budgetCtrl.deleteItem(type, ID);
 
             // 2. Delete the item from the UI
+            UICtrl.deleteListItem(itemID);
 
             // 3. Update and show the new budget
+            updateBudget();
 
         }
     };
