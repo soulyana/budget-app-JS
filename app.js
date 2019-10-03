@@ -1,6 +1,5 @@
 /**
- *  Deleting an Item from the UI 
- *  More DOM manipulation: how to remove an element from the DOM
+ *  Updating the Percentages: Controller
  */
 
 // BUDGET CONTROLLER
@@ -228,6 +227,15 @@ var controller = (function (budgetCtrl, UICtrl) {
         UICtrl.displayBudget(budget);
     };
 
+    var updatePercentages = function() {
+
+        // 1. Calculate Percentages
+
+        // 2. Read percentages from the budget controller
+
+        // 3. Update the UI with new percentages
+    };
+
     var ctrlAddItem = function () {
         var input, newItem;
 
@@ -247,6 +255,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 5. calculate and update budget
             updateBudget();
+
+            // 6. Calculate and update percentages
+            updatePercentages();
 
         }
 
@@ -272,6 +283,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 3. Update and show the new budget
             updateBudget();
+
+            // 4. Calculate and update percentages
+            updatePercentages();
 
         }
     };
