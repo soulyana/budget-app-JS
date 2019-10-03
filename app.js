@@ -1,8 +1,7 @@
 /**
- *  Setting up the Delete Event Listener using Event Delegation  
- *  How to use event delegation in practice
- *  How to use IDs in HTML to connect the UI with the data model;
- *  How to use the parentNode property for DOM traversing
+ *  Deleting an Item from Our Budget Controller 
+ *  Yet another method to loop over an array: map
+ *  How to remove elements from an array using the splice method 
  */
 
 // BUDGET CONTROLLER
@@ -64,6 +63,21 @@ var budgetController = (function () {
 
             // Return the new element
             return newItem;
+
+        },
+
+        deleteItem: function(type, id) {
+            var ids, index;
+
+            ids = data.allItems[type].map(function(current) {
+                return current.id; 
+            });
+
+            index = ids.indexOf(id);
+
+            if (index !== -1) {
+                data.allItems[type].splice(index, 1);
+            }
 
         },
 
@@ -236,8 +250,8 @@ var controller = (function (budgetCtrl, UICtrl) {
     var ctrlDeleteItem = function(event) {
         var itemID, splitID, type, ID;
 
-        itemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
-
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+      
         if (itemID) {
 
             //inc-1
